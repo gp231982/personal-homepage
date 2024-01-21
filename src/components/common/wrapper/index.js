@@ -1,3 +1,5 @@
 import { StyledDiv } from "./styled";
 
-export const Wrapper = ({ children }) => <StyledDiv>{children}</StyledDiv>;
+export const Wrapper = ({ mode, children }) => (
+  <StyledDiv mode={mode}>{children}</StyledDiv>
+);

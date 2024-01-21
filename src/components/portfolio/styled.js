@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { theme } from "../../assets/styles/themes/theme";
 import { ReactComponent as GithubIcon } from "../../assets/images/blueGithubIcon.svg";
 
-const { breakPoints, colors } = theme;
+const { breakPoints, colors, duration, timingFunction } = theme;
 
 export const PortfolioWrapper = styled.div`
   display: flex;
@@ -15,7 +15,8 @@ export const PortfolioHeader = styled.h2`
   padding-top: 12px;
   padding-bottom: 8px;
   margin: 0;
-  color: ${colors.nero};
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.nero : colors.white};
   text-align: center;
   font-family: Inter;
   font-size: 30px;
@@ -29,10 +30,13 @@ export const PortfolioHeader = styled.h2`
     letter-spacing: 0.9px;
     padding-bottom: 16px;
   }
+
+  transition: color ${duration} ${timingFunction};
 `;
 
 export const ProjectsHeader = styled.h3`
-  color: ${colors.nero};
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.nero : colors.white};
   font-family: Inter;
   font-size: 20px;
   font-style: normal;
@@ -47,6 +51,8 @@ export const ProjectsHeader = styled.h3`
     letter-spacing: 0.85px;
     margin-bottom: 24px;
   }
+
+  transition: color ${duration} ${timingFunction};
 `;
 
 export const ProjectsWrapper = styled.div`
@@ -74,17 +80,22 @@ export const Project = styled.div`
   flex-shrink: 0;
   border-radius: 4px;
   border: 6px solid ${colors.linkWater};
-  background: ${colors.white};
+  background: ${({ theme }) =>
+    theme.mode === "light" ? theme.colors.white : theme.colors.mineShaft};
   box-shadow: 0px 16px 58px 0px rgba(9, 10, 51, 0.03),
     0px -2px 50px 0px rgba(9, 10, 51, 0.02);
 
   @media (max-width: ${breakPoints.xs}) {
     padding: 24px;
   }
+
+  transition: background ${duration} ${timingFunction} box-shadow ${duration}
+    ${timingFunction};
 `;
 
 export const ProjectHeader = styled.h3`
-  color: ${colors.navyBlue};
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.navyBlue : colors.white};
   font-family: Inter;
   font-size: 24px;
   font-style: normal;
@@ -93,7 +104,6 @@ export const ProjectHeader = styled.h3`
   letter-spacing: 1.2px;
   margin: 0;
   padding: 0;
-  color: ${colors.navyBlue};
   margin-bottom: 24px;
 
   @media (max-width: ${breakPoints.xs}) {
@@ -101,9 +111,12 @@ export const ProjectHeader = styled.h3`
     letter-spacing: 0.8px;
     margin-bottom: 16px;
   }
+
+  transition: color ${duration} ${timingFunction};
 `;
 export const ProjectDescription = styled.p`
-  color: ${colors.slateGrey};
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.nero : colors.white};
   font-family: Inter;
   font-size: 18px;
   font-style: normal;
@@ -120,18 +133,22 @@ export const ProjectDescription = styled.p`
     letter-spacing: 0.7px;
     margin-bottom: 16px;
   }
+
+  transition: color ${duration} ${timingFunction};
 `;
 
 export const Links = styled.div`
   display: grid;
   gap: 8px;
 `;
+
 export const ProjectDemo = styled.p`
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 8px;
   margin: 0px;
-  color: ${colors.slateGrey};
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.slateGrey : colors.white};
   font-family: Inter;
   font-size: 18px;
   font-style: normal;
@@ -144,13 +161,16 @@ export const ProjectDemo = styled.p`
     line-height: normal;
     letter-spacing: 0.7px;
   }
+
+  transition: color ${duration} ${timingFunction};
 `;
 export const ProjectCode = styled.p`
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 8px;
   margin: 0px;
-  color: ${colors.slateGrey};
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.slateGrey : colors.white};
   font-family: Inter;
   font-size: 18px;
   font-style: normal;
@@ -163,12 +183,14 @@ export const ProjectCode = styled.p`
     line-height: normal;
     letter-spacing: 0.7px;
   }
+
+  transition: color ${duration} ${timingFunction};
 `;
 
 export const Link = styled.a`
-  color: ${colors.navyBlue};
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.navyBlue : colors.dodgerBlue};
   position: relative;
-
   font-family: Inter;
   font-size: 18px;
   font-style: normal;
@@ -177,6 +199,11 @@ export const Link = styled.a`
   letter-spacing: 0.9px;
   text-decoration: none;
 
+  &:hover {
+    color: ${({ theme }) =>
+      theme.mode === "light" ? colors.dodgerBlue : colors.navyBlue};
+  }
+
   &:after {
     content: "";
     position: absolute;
@@ -184,8 +211,16 @@ export const Link = styled.a`
     left: 0;
     width: 100%;
     height: 1px;
-    background-color: ${colors.navyBlue};
+    background: ${({ theme }) =>
+      theme.mode === "light" ? colors.navyBlue : colors.dodgerBlue};
     opacity: 0.2;
+  }
+
+  &:hover {
+    &:after {
+      background: ${({ theme }) =>
+        theme.mode === "light" ? colors.dodgerBlue : colors.navyBlue};
+    }
   }
 
   @media (max-width: ${breakPoints.xs}) {
@@ -193,18 +228,28 @@ export const Link = styled.a`
     line-height: normal;
     letter-spacing: 0.7px;
   }
+
+  transition: color ${duration} ${timingFunction} background ${duration}
+    ${timingFunction};
 `;
 
 export const Span = styled.span`
   width: 60px;
+
+  transition: color ${duration} ${timingFunction} background ${duration}
+    ${timingFunction};
 `;
 
 export const StyledGithubIcon = styled(GithubIcon)`
   width: 40px;
   height: 40px;
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.navyBlue : colors.dodgerBlue};
 
   @media (max-width: ${breakPoints.xs}) {
     width: 32px;
     height: 32px;
   }
+
+  transition: color ${duration} ${timingFunction};
 `;

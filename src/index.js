@@ -1,27 +1,33 @@
+import ReactDOM from "react-dom";
 import React from "react";
-import ReactDOM from "react-dom/client";
-import { Provider } from "react-redux";
-import "./index.css";
-import App from "./app/App.js";
-import reportWebVitals from "./reportWebVitals.js";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./assets/styles/themes/theme.js";
+import { ModeProvider, useModeContext } from "./assets/styles/ModeContext.js";
 import { GlobalStyle } from "./assets/styles/GlobalStyle.js";
-// import store from "./store/store.js";
+import { theme } from "./assets/styles/themes/theme.js";
+import App from "./app/App.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    {/* <Provider store={store}> */}
-    <ThemeProvider theme={theme}>
-    <GlobalStyle />
-    <App />
-    </ThemeProvider>
-    {/* </Provider> */}
-  </React.StrictMode>
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const ThemedApp = () => {
+  const { mode } = useModeContext();
+
+  const themedTheme = {
+    ...theme, // zachowujemy pierwotne właściwości tematu
+    mode, // dodajemy nową właściwość `mode`
+  };
+
+  return (
+    <React.StrictMode>
+      <ThemeProvider theme={themedTheme}>
+        <GlobalStyle />
+        <App />
+      </ThemeProvider>
+    </React.StrictMode>
+  );
+};
+
+root.render(
+  <ModeProvider>
+    <ThemedApp />
+  </ModeProvider>
+);

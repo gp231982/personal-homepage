@@ -8,7 +8,7 @@ import { ReactComponent as FacebookIcon } from "../../assets/images/facebookIcon
 import { ReactComponent as LinkedInIcon } from "../../assets/images/linkedINIcon.svg";
 import { ReactComponent as InstagramIcon } from "../../assets/images/instagramIcon.svg";
 
-const { breakPoints, colors } = theme;
+const { breakPoints, colors, duration, timingFunction } = theme;
 
 export const Wrapper = styled.div`
   max-width: 691px;
@@ -27,7 +27,8 @@ export const Content = styled.div`
 `;
 
 export const StyledEmail = styled(Email)`
-  color: ${colors.nero};
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.nero : colors.white};
   font-family: Inter;
   font-size: 32px;
   font-style: normal;
@@ -35,16 +36,25 @@ export const StyledEmail = styled(Email)`
   line-height: normal;
   letter-spacing: 1.6px;
   margin: 0;
+  cursor: pointer;
+
+  &:hover {
+    color: ${({ theme }) =>
+      theme.mode === "light" ? colors.navyBlue : colors.dodgerBlue};
+  }
 
   @media (max-width: ${breakPoints.xs}) {
     font-size: 18px;
     letter-spacing: 0.9px;
   }
+
+  transition: color ${duration} ${timingFunction};
 `;
 
 export const StyledInfo = styled(Info)`
   max-width: 670px;
-  color: ${colors.nero};
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.nero : colors.white};
   font-family: Inter;
   font-size: 18px;
   font-style: normal;
@@ -58,6 +68,8 @@ export const StyledInfo = styled(Info)`
     line-height: normal;
     letter-spacing: 0.7px;
   }
+
+  transition: color ${duration} ${timingFunction};
 `;
 
 export const StyledFingersCrossedIcon = styled.img`
@@ -86,39 +98,79 @@ export const Socials = styled.div`
 export const StyledGithubIcon = styled(GithubIcon)`
   width: 48px;
   height: 48px;
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.nero : colors.white};
+
+  &:hover {
+    color: ${({ theme }) =>
+      theme.mode === "light" ? colors.navyBlue : colors.dodgerBlue};
+  }
+  cursor: pointer;
 
   @media (max-width: ${breakPoints.xs}) {
     width: 32px;
     height: 32px;
   }
+
+  transition: color ${duration} ${timingFunction};
 `;
 
 export const StyledFacebookIcon = styled(FacebookIcon)`
   width: 48px;
   height: 48px;
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.nero : colors.white};
+
+  &:hover {
+    color: ${({ theme }) =>
+      theme.mode === "light" ? colors.navyBlue : colors.dodgerBlue};
+  }
+  cursor: pointer;
 
   @media (max-width: ${breakPoints.xs}) {
     width: 32px;
     height: 32px;
   }
+
+  transition: color ${duration} ${timingFunction};
 `;
 
 export const StyledLinkedInIcon = styled(LinkedInIcon)`
   width: 48px;
   height: 48px;
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.nero : colors.white};
+
+  &:hover {
+    color: ${({ theme }) =>
+      theme.mode === "light" ? colors.navyBlue : colors.dodgerBlue};
+  }
+  cursor: pointer;
 
   @media (max-width: ${breakPoints.xs}) {
     width: 32px;
     height: 32px;
   }
+
+  transition: color ${duration} ${timingFunction};
 `;
 
 export const StyledInstagramIcon = styled(InstagramIcon)`
   width: 48px;
   height: 48px;
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.nero : colors.white};
+
+  &:hover {
+    color: ${({ theme }) =>
+      theme.mode === "light" ? colors.navyBlue : colors.dodgerBlue};
+  }
+  cursor: pointer;
 
   @media (max-width: ${breakPoints.xs}) {
     width: 32px;
     height: 32px;
   }
+
+  transition: color ${duration} ${timingFunction};
 `;

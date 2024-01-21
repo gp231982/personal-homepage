@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { theme } from "../../assets/styles/themes/theme";
 
-const { breakPoints, colors } = theme;
+const { breakPoints, colors, duration, timingFunction } = theme;
 
 export const SkillsHeader = styled.h2`
-  color: ${colors.nero};
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.nero : colors.white};
   text-align: left;
   font-family: Inter;
   font-size: 30px;
@@ -22,12 +23,14 @@ export const SkillsHeader = styled.h2`
     letter-spacing: 0.9px;
     padding-bottom: 12px;
   }
+  transition: color ${duration} ${timingFunction};
 `;
 
 export const SkillsSection = styled.section`
   padding: 32px;
   border-radius: 4px;
-  background: white;
+  background: ${({ mode }) =>
+    mode === "light" ? colors.white : colors.mineShaft};
   margin-bottom: 72px;
   box-shadow: 0px 16px 58px 0px rgba(9, 10, 51, 0.03),
     0px -2px 50px 0px rgba(9, 10, 51, 0.02);
@@ -36,10 +39,11 @@ export const SkillsSection = styled.section`
     padding: 16px;
     margin-bottom: 50px;
   }
+  transition: background ${duration} ${timingFunction};
 `;
 
 export const StyledSkillsIcon = styled.img`
-  color: var(--White, ${colors.white});
+  color: ${colors.white};
   text-align: center;
   font-family: Inter;
   font-size: 24px;
@@ -59,7 +63,8 @@ export const List = styled.ul`
   margin-bottom: 0px;
   padding-top: 32px;
   padding-left: 0px;
-  color: ${colors.slateGrey};
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.nero : colors.white};
   font-family: Inter;
   font-size: 18px;
   font-style: normal;
@@ -90,6 +95,8 @@ export const List = styled.ul`
     line-height: normal;
     letter-spacing: 0.7px;
   }
+
+  transition: color ${duration} ${timingFunction};
 `;
 
 export const ListItem = styled.li`

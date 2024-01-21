@@ -9,8 +9,8 @@ import {
 import bullet from "../../assets/images/bullet.png";
 import { StyledBulletIcon } from "./styled";
 
-export const Skills = ({ skills, title, icon }) => (
-  <SkillsSection>
+export const Skills = ({ skills, title, icon, mode }) => (
+  <SkillsSection mode={mode}>
     <SkillsHeader>
       {title} <StyledSkillsIcon src={icon} alt="" />
     </SkillsHeader>

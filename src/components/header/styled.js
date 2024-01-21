@@ -8,10 +8,9 @@ import { IconsContainer } from "./IconsContainer";
 import { ReactComponent as BackgroundIcon } from "../../assets/images/backgroundIcon.svg";
 import { ReactComponent as ToggleIcon } from "../../assets/images/toggle.svg";
 import { ReactComponent as SunIcon } from "../../assets/images/sun.svg";
-
 import { theme } from "../../assets/styles/themes/theme";
 
-const { breakPoints, colors } = theme;
+const { colors, breakPoints, duration, timingFunction } = theme;
 
 export const StyledHeader = styled.header`
   display: flex;
@@ -68,7 +67,8 @@ export const StyledImg = styled.img`
 `;
 
 export const StyledAboutMeHeader = styled(AboutMeHeader)`
-  color: ${colors.nero};
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.nero : colors.white};
   font-family: Inter;
   font-size: 38px;
   font-style: normal;
@@ -84,10 +84,13 @@ export const StyledAboutMeHeader = styled(AboutMeHeader)`
     margin-top: 8px;
     margin-bottom: 16px;
   }
+
+  transition: color ${duration} ${timingFunction};
 `;
 
 export const StyledAboutMe = styled(AboutMe)`
-  color: ${colors.slateGrey};
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.slateGrey : colors.white};
   font-family: Inter;
   font-size: 20px;
   font-style: normal;
@@ -102,6 +105,8 @@ export const StyledAboutMe = styled(AboutMe)`
     letter-spacing: 0.85px;
     margin-bottom: 24px;
   }
+
+  transition: color ${duration} ${timingFunction};
 `;
 
 export const StyledButton = styled.button`
@@ -111,15 +116,37 @@ export const StyledButton = styled.button`
   align-items: center;
   gap: 16px;
   border-radius: 4px;
-  border: 1px solid ${colors.linkWater};
-  background: ${colors.navyBlue};
+  border: 1px solid ${colors.iron};
+  background: ${({ theme }) =>
+    theme.mode === "light" ? colors.navyBlue : colors.dodgerBlue};
   width: max-content;
-  color: white;
+  color: ${colors.white};
   cursor: pointer;
+
+  &:hover {
+    border-radius: 4px;
+    border: 1px solid var(--Diff-bg-neutral, rgba(209, 213, 218, 0.3));
+    background: var(--Main-blue-LM, #0366d6);
+    box-shadow: ${({ theme }) =>
+      theme.mode === "light"
+        ? "-2px -2px 0px 0px #8cc2ff, 2px 2px 0px 0px #8cc2ff, -2px 2px 0px 0px #8cc2ff, 2px -2px 0px 0px #8cc2ff"
+        : "-2px -2px 0px 0px #6D93BE, 2px 2px 0px 0px #6D93BE, -2px 2px 0px 0px #6D93BE, 2px -2px 0px 0px #6D93BE"};
+  }
+
+  &:selected {
+    border-radius: 4px;
+    border: 1px solid var(--Diff-bg-neutral, rgba(209, 213, 218, 0.3));
+    background: var(--Main-blue-LM, #0366d6);
+    box-shadow: 0px 2px 0px 0px rgba(20, 70, 32, 0.2) inset;
+    transition: 0.5s;
+  }
 
   @media (max-width: ${breakPoints.xs}) {
     gap: 12px;
   }
+
+  transition: box-shadow ${duration} ${timingFunction} background ${duration}
+    ${timingFunction};
 `;
 
 export const StyledManIcon = styled.img`
@@ -139,7 +166,7 @@ export const ButtonIcon = styled(MailIcon)`
 `;
 
 export const StyledButtonText = styled(ButtonText)`
-  color: ${colors.white});
+  color: ${colors.white};
   text-align: center;
   font-family: Inter;
   font-size: 20.058px;
@@ -151,7 +178,7 @@ export const StyledButtonText = styled(ButtonText)`
 
 export const ToggleModeButtonContainer = styled.div`
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr auto;
   width: 159px;
   height: 26px;
   position: absolute;
@@ -170,7 +197,8 @@ export const StyledIconsContainer = styled(IconsContainer)`
 `;
 
 export const StyledTextContainer = styled(TextContainer)`
-  color: ${colors.slateGrey};
+  color: ${({ theme }) =>
+    theme.mode === "light" ? theme.colors.slateGrey : theme.colors.white};
   font-family: Inter;
   font-size: 12px;
   font-style: normal;
@@ -181,6 +209,8 @@ export const StyledTextContainer = styled(TextContainer)`
   @media (max-width: ${breakPoints.sm}) {
     opacity: 0;
   }
+
+  transition: background ${duration} ${timingFunction};
 `;
 
 export const StyledBackgroundIcon = styled(BackgroundIcon)`
@@ -188,6 +218,21 @@ export const StyledBackgroundIcon = styled(BackgroundIcon)`
   height: 26px;
   flex-shrink: 0;
   position: relative;
+
+  path:first-child {
+    fill: ${({ theme }) =>
+      theme.mode === "light" ? colors.white : colors.slateGrey};
+    stroke: ${colors.slateGrey};
+  }
+
+  path:last-child {
+    fill: ${({ theme }) =>
+      theme.mode === "light" ? colors.mercury : colors.semiDark};
+    stroke: ${colors.white};
+    stroke-opacity: 0.3;
+  }
+
+  transition: fill ${duration} ${timingFunction};
 `;
 
 export const StyledToggleIcon = styled(ToggleIcon)`
@@ -195,18 +240,32 @@ export const StyledToggleIcon = styled(ToggleIcon)`
   height: 20px;
   flex-shrink: 0;
   position: absolute;
+  background: ${({ theme }) =>
+    theme.mode === "light" ? colors.slateGrey : colors.white};
+  border-radius: 50%;
   top: 50%;
   transform: translateY(-50%);
-  left: 3px;
+  ${({ theme }) =>
+    theme.mode === "light" ? "left: 3px;" : `left: calc(100% - 23px);`};
+
+  transition: left ${duration} ${timingFunction},
+    background ${duration} ${timingFunction};
 `;
 
 export const StyledSunIcon = styled(SunIcon)`
   width: 14px;
   height: 14px;
   flex-shrink: 0;
-  background: ${colors.slateGrey};
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 6px;
+  ${({ theme }) =>
+    theme.mode === "light" ? "left: 6px;" : `left: calc(100% - 20px);`};
+
+  path {
+    fill: ${({ theme }) =>
+      theme.mode === "light" ? colors.white : colors.black};
+  }
+  transition: left ${duration} ${timingFunction},
+    fill ${duration} ${timingFunction};
 `;
