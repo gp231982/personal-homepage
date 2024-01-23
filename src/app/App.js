@@ -1,4 +1,3 @@
-import "./App.css";
 import { Wrapper } from "../components/common/wrapper";
 import { Header } from "../components/header";
 import { Skills } from "../components/skills";

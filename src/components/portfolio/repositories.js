@@ -10,6 +10,6 @@ export const getRepositories = async (username) => {
     return repositories;
   } catch (error) {
     console.error("Błąd podczas pobierania repozytoriów", error.message);
-    throw error; // Rzucenie błędu, aby komponent mógł go obsłużyć
+    throw error; 
   }
 };

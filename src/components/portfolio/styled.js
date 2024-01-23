@@ -1,6 +1,8 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { theme } from "../../assets/styles/themes/theme";
 import { ReactComponent as GithubIcon } from "../../assets/images/blueGithubIcon.svg";
+import { ReactComponent as IconSpinner } from "../../assets/images/icon-spinner.svg";
+import { ReactComponent as DangerIcon } from "../../assets/images/danger.svg";
 
 const { breakPoints, colors, duration, timingFunction } = theme;
 
@@ -252,4 +254,107 @@ export const StyledGithubIcon = styled(GithubIcon)`
   }
 
   transition: color ${duration} ${timingFunction};
+`;
+
+const rotate = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
+export const LoadingText = styled.div`
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.black : colors.white};
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: 1px;
+  margin-top: 88px;
+`;
+
+export const StyledIconSpinner = styled(IconSpinner)`
+  width: 160px;
+  height: 160px;
+  animation: ${rotate} 1s linear infinite;
+  margin-top: 48px;
+  margin-bottom: 140px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
+  circle {
+    stroke: ${({ theme }) =>
+      theme.mode === "light" ? colors.iron : colors.mineShaft};
+  }
+`;
+
+export const StyledDangerIcon = styled(DangerIcon)`
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  margin: 0 auto;
+  display: block;
+  margin-top: 88px;
+
+  path {
+    stroke: ${({ theme }) =>
+      theme.mode === "light" ? colors.black : colors.white};
+  }
+`;
+
+export const ErrorHeaderText = styled.h3`
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.black : colors.white};
+  text-align: center;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1.2px;
+  margin: 0 auto;
+  margin-top: 16px;
+`;
+
+export const ErrorParagraphText = styled.p`
+  width: 426.532px;
+  color: ${({ theme }) =>
+    theme.mode === "light" ? colors.black : colors.white};
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: 1px;
+  margin-top: 32px;
+`;
+
+export const GoToGithubButton = styled.button`
+  padding: 12px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  border-radius: 4px;
+  border: 1px solid var(--semi-grey, rgba(209, 213, 218, 0.1));
+  background: ${({ theme }) =>
+    theme.mode === "light" ? colors.navyBlue : colors.dodgerBlue};
+  display: block;
+  color: ${colors.white};
+  text-align: center;
+  font-family: Inter;
+  font-size: 20.058px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 1.003px;
+  margin: 0 auto;
+  cursor: pointer;
+  margin-bottom: 140px;
 `;
