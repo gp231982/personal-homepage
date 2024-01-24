@@ -1,12 +1,14 @@
 // import { createGlobalStyle } from "styled-components";
-import { theme } from "./themes/theme";
+// import { theme } from "./themes/theme";
 // import { useModeContext } from "./ModeContext";
 
-// const { breakPoints, colors } = theme;
+// const { breakPoints, colors, duration, timingFunction } = theme;
 
 // export const GlobalStyle = createGlobalStyle`
 //     html {
 //         box-sizing: border-box;
+//         background: ${({ mode }) =>
+//           mode === "light" ? colors.white : colors.black};
 
 //     }
 
@@ -15,6 +17,7 @@ import { theme } from "./themes/theme";
 //     }
 
 //     body {
+//         ${"" /* box-sizing: border-box; */}
 //         font-family: "Poppins", sans-serif;
 //         display: flex;
 //         align-items: center;
@@ -25,22 +28,24 @@ import { theme } from "./themes/theme";
 //         max-width: 1216px;
 //         width:100%;
 //         margin:0 auto;
+//         transition: background ${duration} ${timingFunction};
 
 //           background: ${({ mode }) =>
 //             mode === "light" ? colors.white : colors.black};
-//         }
+//         };
 
 //         @media(max-width:${breakPoints.sm}){
 //             padding:0 16px;
-//         }
-
+//         };
 // `;
 
 // GlobalStyle.js
 
 import { createGlobalStyle } from "styled-components";
 
-const {colors, breakPoints, duration, timingFunction} = theme
+import { theme } from "./themes/theme";
+
+const { colors, breakPoints, duration, timingFunction } = theme;
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -67,9 +72,5 @@ export const GlobalStyle = createGlobalStyle`
 
     *, ::after, ::before {
         box-sizing: inherit;
-    }
-
-    body {
-        margin: 0;
     }
 `;
