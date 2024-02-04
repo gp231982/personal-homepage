@@ -15,8 +15,7 @@ import { StyledCaption } from "../common/styled";
 import myPicture from "../../assets/images/myPicture.jpg";
 import { ToggleModeButton } from "./ToggleModeButton";
 
-export const Header = ({toggleMode}) => {
-
+export const Header = ({ toggleMode }) => {
   return (
     <StyledHeader>
       <StyledImgContainer>
@@ -26,10 +25,15 @@ export const Header = ({toggleMode}) => {
         <StyledCaption content="This is" />
         <StyledAboutMeHeader />
         <StyledAboutMe />
-        <StyledButton>
-          <ButtonIcon />
-          <StyledButtonText />
-        </StyledButton>
+        <a
+          href="mailto:grzegorz.piejko23@gmail.com"
+          title="grzegorz.piejko23@gmail.com"
+        >
+          <StyledButton>
+            <ButtonIcon />
+            <StyledButtonText />
+          </StyledButton>
+        </a>
         <ToggleModeButton onClick={toggleMode}>
           <StyledTextContainer />
           <StyledIconsContainer />
