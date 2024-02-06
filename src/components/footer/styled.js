@@ -37,10 +37,16 @@ export const StyledEmail = styled(Email)`
   letter-spacing: 1.6px;
   margin: 0;
   cursor: pointer;
+  text-decoration: none;
 
   &:hover {
     color: ${({ theme }) =>
       theme.mode === "light" ? colors.navyBlue : colors.dodgerBlue};
+  }
+
+  @media (max-width: ${breakPoints.sm}) {
+    font-size: 24px;
+    letter-spacing: 0.9px;
   }
 
   @media (max-width: ${breakPoints.xs}) {
@@ -93,6 +99,9 @@ export const Socials = styled.div`
   @media (max-width: ${breakPoints.xs}) {
     grid-gap: 16px;
   }
+`;
+
+export const StyledLink = styled.a`
 `;
 
 export const StyledGithubIcon = styled(GithubIcon)`

@@ -1,3 +1,9 @@
 export const Email = ({ className }) => (
-    <p className={className}>gp23.1982@gmail.com</p>
-  );
+  <a
+    href="mailto:grzegorz.piejko23@gmail.com"
+    title="grzegorz.piejko23@gmail.com"
+    className={className}
+  >
+    grzegorz.piejko23@gmail.com
+  </a>
+);
